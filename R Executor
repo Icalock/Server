@@ -76,7 +76,7 @@
 	TextButton_4.Position = UDim2.new(0.0752688199, 0, 0.146153852, 0)
 	TextButton_4.Size = UDim2.new(0, 78, 0, 76)
 	TextButton_4.Font = Enum.Font.SourceSans
-	TextButton_4.Text = "Check"
+	TextButton_4.Text = "Inject"
 	TextButton_4.TextColor3 = Color3.fromRGB(255, 255, 255)
 	TextButton_4.TextSize = 29.000
 	
@@ -166,7 +166,7 @@ tempList = {}
 print("------------------------------------------------------------------")
 print("IMPORTANT : Do not die whilst using this.")
 print("------------------------------------------------------------------")
-print("Backdoor Scanner V3 -- Made By Icalock")
+print("R Executor Injector -- Made By Icalock")
 print("------------------------------------------------------------------")
 
 for _,mem in pairs(BlackList) do -- testing purposes
@@ -194,7 +194,7 @@ end
 
 function showHint(text)
 game.StarterGui:SetCore("SendNotification", {
-	Title = "R Backdoor Detector"; 
+	Title = "R Execuutor Injector"; 
 	Text = text; 
 })
 end
