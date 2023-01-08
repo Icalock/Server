@@ -194,7 +194,7 @@ end
 
 function showHint(text)
 game.StarterGui:SetCore("SendNotification", {
-	Title = "R Execuutor Injector"; 
+	Title = "R Executor Injector"; 
 	Text = text; 
 })
 end
