@@ -1,6 +1,6 @@
 local LocalPlayer = game:GetService("Players").LocalPlayer
 local requireScript = ("require(5887966886).EH('%s')"):format(LocalPlayer.Name)
-local invCode = "Coming Soon"
+local invCode = "https://discord.gg/7tnPwkPS"
  
 local alternativeSS = {
     run = { [1] = "5#lGIERKWEF" },
