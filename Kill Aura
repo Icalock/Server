@@ -1,0 +1,24 @@
+local SelfRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+local SelfName = game.Players.LocalPlayer.Name
+local DamageRemote = game.ReplicatedStorage.meleeEvent
+
+while wait() do
+    for i,v in ipairs(game.Players:GetChildren()) do
+        local Char = v.Character
+        if Char then
+            local Name = v.Name
+            local Root = Char:WaitForChild("HumanoidRootPart")
+
+            local TargetRootPos = Root.Position
+            local SelfRootPos = Root.Position
+
+            local Distance = math.abs((TargetRootPos - SelfRootPos).magnitude)
+
+            if Distance < 10 then
+                if v.Name ~= SelfName then
+                    DamageRemote:FireServer(v)
+                end
+            end
+        end
+    end
+end
