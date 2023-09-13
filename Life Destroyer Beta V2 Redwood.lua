@@ -265,7 +265,7 @@ Tab:AddButton({
   	end    
 })
 Tab:AddToggle({
-	Name = "Bubble Shield",
+	Name = "Bubble Shield (Is not working)",
 	Default = false,
 	Callback = function(bool)
         loopEnabled = bool
