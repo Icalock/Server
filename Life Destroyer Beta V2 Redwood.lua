@@ -1,59 +1,25 @@
-game.StarterGui:SetCore("ChatMakeSystemMessage", {
-    Text = "Welcome to Life Destroyer Beta UTG";
-    Color =  Color3.new(1, 1, 0);
-    Font = Enum.Font.GothamBold;
-    FontSize = Enum.FontSize.Size24;
-    })
-    
-    game.StarterGui:SetCore("ChatMakeSystemMessage", {
-    Text = "Thanks for using my UTG ! ";
-    Color =  Color3.new(1, 1, 0);
-    Font = Enum.Font.GothamBold;
-    FontSize = Enum.FontSize.Size24;
-    })
-    
-    game.StarterGui:SetCore("ChatMakeSystemMessage", {
-    Text = "Redwood Prison TM";
-    Color =  Color3.new(1, 1, 0);
-    Font = Enum.Font.GothamBold;
-    FontSize = Enum.FontSize.Size24;
-    })
-    
-    game.StarterGui:SetCore("ChatMakeSystemMessage", {
-    Text = "No Blacklist, Free Spam and More, OP Scripts ";
-    Color =  Color3.new(1, 1, 0);
-    Font = Enum.Font.GothamBold;
-    FontSize = Enum.FontSize.Size24;
-    })
-    
-    game.StarterGui:SetCore("ChatMakeSystemMessage", {
-    Text = "Rank: Whitelisted";
-    Color =  Color3.new(1, 1, 0);
-    Font = Enum.Font.GothamBold;
-    FontSize = Enum.FontSize.Size24;
-    })
-    
+
     local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Icalock/Server/main/Test%20Orion%20Changes",true))();
     OrionLib:MakeNotification({
-        Name = "Life Destroyer Beta V2",
+        Name = "Center Regginator Admin",
         Content = "Loading...",
-        Image = "http://www.roblox.com/asset/?id=12597288571",
+        Image = "http://www.roblox.com/asset/?id=11507046652",
         Time = 5
     })
     wait(5)
     OrionLib:MakeNotification({
-        Name = "Life Destroyer Beta V2",
-        Content = "Welcome to Life Destroyer",
-        Image = "http://www.roblox.com/asset/?id=12597288571",
+        Name = "Center Regginator Admin",
+        Content = "Hey ! Welcome !",
+        Image = "http://www.roblox.com/asset/?id=11507046652",
         Time = 5
     })
     OrionLib:MakeNotification({
-        Name = "Life Destroyer Beta V2",
-        Content = "Game Detected: Redwood Prison",
-        Image = "http://www.roblox.com/asset/?id=12597288571",
+        Name = "Center Regginator Admin",
+        Content = "Enjoy for using my script !",
+        Image = "http://www.roblox.com/asset/?id=11507046652",
         Time = 5
     })
-    local Window = OrionLib:MakeWindow({Name = "Life Destroyer Beta V2 - Redwood Prison", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+    local Window = OrionLib:MakeWindow({Name = "Center Regginator - Redwood Prison", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
     local Tab = Window:MakeTab({
         Name = "Home",
         Icon = "http://www.roblox.com/asset/?id=11247260342",
@@ -63,7 +29,7 @@ game.StarterGui:SetCore("ChatMakeSystemMessage", {
         Name = "Status: Whitelisted"
     })
     local Section = Tab:AddSection({
-        Name = "Welcome to Life Destroyer Beta V2"
+        Name = "Welcome to Center Regginator For Redwood Prison"
     })
     local Tab = Window:MakeTab({
         Name = "Scripts",
