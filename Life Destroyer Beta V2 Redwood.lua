@@ -19,7 +19,7 @@
         Image = "http://www.roblox.com/asset/?id=11507046652",
         Time = 5
     })
-    local Window = OrionLib:MakeWindow({Name = "Center Regginator - Redwood Prison", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+    local Window = OrionLib:MakeWindow({Name = "Center Regginator Admin", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
     local Tab = Window:MakeTab({
         Name = "Home",
         Icon = "http://www.roblox.com/asset/?id=11247260342",
