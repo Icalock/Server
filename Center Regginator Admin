@@ -1,0 +1,713 @@
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Icalock/Server/main/Test%20Orion%20Changes",true))();
+    OrionLib:MakeNotification({
+        Name = "Center Regginator Admin",
+        Content = "Loading...",
+        Image = "http://www.roblox.com/asset/?id=11507046652",
+        Time = 5
+    })
+    wait(5)
+    OrionLib:MakeNotification({
+        Name = "Center Regginator Admin",
+        Content = "Hey ! Welcome !",
+        Image = "http://www.roblox.com/asset/?id=11507046652",
+        Time = 5
+    })
+    OrionLib:MakeNotification({
+        Name = "Center Regginator Admin",
+        Content = "Enjoy for using my script !",
+        Image = "http://www.roblox.com/asset/?id=11507046652",
+        Time = 5
+    })
+wait(5)
+local ScreenGui = Instance.new("ScreenGui")
+local Center = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local kill = Instance.new("TextButton")
+local ban = Instance.new("TextButton")
+local naked = Instance.new("TextButton")
+local sink = Instance.new("TextButton")
+local kick = Instance.new("TextButton")
+local rangdoll = Instance.new("TextButton")
+local target = Instance.new("TextBox")
+local nolimbs = Instance.new("TextButton")
+local goto = Instance.new("TextButton")
+local noregen = Instance.new("TextButton")
+local pantsless = Instance.new("TextButton")
+local shirtless = Instance.new("TextButton")
+local punish = Instance.new("TextButton")
+local r6 = Instance.new("TextButton")
+local Players = game:GetService("Players")
+function splitString(str,delim)
+	local broken = {}
+	if delim == nil then delim = "," end
+	for w in string.gmatch(str,"[^"..delim.."]+") do
+		table.insert(broken,w)
+	end
+	return broken
+end
+function toTokens(str)
+	local tokens = {}
+	for op,name in string.gmatch(str,"([+-])([^+-]+)") do
+		table.insert(tokens,{Operator = op,Name = name})
+	end
+	return tokens
+end
+function getRoot(char)
+	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+	return rootPart
+end
+local WTS = function(Object)
+	local ObjectVector = workspace.CurrentCamera:WorldToScreenPoint(Object.Position)
+	return Vector2.new(ObjectVector.X, ObjectVector.Y)
+end
+local mouse = Players.LocalPlayer:GetMouse()
+local MousePositionToVector2 = function()
+	return Vector2.new(mouse.X, mouse.Y)
+end
+local GetClosestPlayerFromCursor = function()
+	local found = nil
+	local ClosestDistance = math.huge
+	for i, v in pairs(Players:GetPlayers()) do
+		if v ~= Players.LocalPlayer and v.Character and v.Character:FindFirstChildOfClass("Humanoid") then
+			for k, x in pairs(v.Character:GetChildren()) do
+				if string.find(x.Name, "Torso") then
+					local Distance = (WTS(x) - MousePositionToVector2()).Magnitude
+					if Distance < ClosestDistance then
+						ClosestDistance = Distance
+						found = v
+					end
+				end
+			end
+		end
+	end
+	return found
+end
+local SpecialPlayerCases = {
+	["all"] = function(speaker) return Players:GetPlayers() end,
+	["others"] = function(speaker)
+		local plrs = {}
+		for i,v in pairs(Players:GetPlayers()) do
+			if v ~= speaker then
+				table.insert(plrs,v)
+			end
+		end
+		return plrs
+	end,
+	["me"] = function(speaker)return {speaker} end,
+	["#(%d+)"] = function(speaker,args,currentList)
+		local returns = {}
+		local randAmount = tonumber(args[1])
+		local players = {unpack(currentList)}
+		for i = 1,randAmount do
+			if #players == 0 then break end
+			local randIndex = math.random(1,#players)
+			table.insert(returns,players[randIndex])
+			table.remove(players,randIndex)
+		end
+		return returns
+	end,
+	["random"] = function(speaker,args,currentList)
+		local players = Players:GetPlayers()
+		local localplayer = Players.LocalPlayer
+		table.remove(players, table.find(players, localplayer))
+		return {players[math.random(1,#players)]}
+	end,
+	["%%(.+)"] = function(speaker,args)
+		local returns = {}
+		local team = args[1]
+		for _,plr in pairs(Players:GetPlayers()) do
+			if plr.Team and string.sub(string.lower(plr.Team.Name),1,#team) == string.lower(team) then
+				table.insert(returns,plr)
+			end
+		end
+		return returns
+	end,
+	["allies"] = function(speaker)
+		local returns = {}
+		local team = speaker.Team
+		for _,plr in pairs(Players:GetPlayers()) do
+			if plr.Team == team then
+				table.insert(returns,plr)
+			end
+		end
+		return returns
+	end,
+	["enemies"] = function(speaker)
+		local returns = {}
+		local team = speaker.Team
+		for _,plr in pairs(Players:GetPlayers()) do
+			if plr.Team ~= team then
+				table.insert(returns,plr)
+			end
+		end
+		return returns
+	end,
+	["team"] = function(speaker)
+		local returns = {}
+		local team = speaker.Team
+		for _,plr in pairs(Players:GetPlayers()) do
+			if plr.Team == team then
+				table.insert(returns,plr)
+			end
+		end
+		return returns
+	end,
+	["nonteam"] = function(speaker)
+		local returns = {}
+		local team = speaker.Team
+		for _,plr in pairs(Players:GetPlayers()) do
+			if plr.Team ~= team then
+				table.insert(returns,plr)
+			end
+		end
+		return returns
+	end,
+	["friends"] = function(speaker,args)
+		local returns = {}
+		for _,plr in pairs(Players:GetPlayers()) do
+			if plr:IsFriendsWith(speaker.UserId) and plr ~= speaker then
+				table.insert(returns,plr)
+			end
+		end
+		return returns
+	end,
+	["nonfriends"] = function(speaker,args)
+		local returns = {}
+		for _,plr in pairs(Players:GetPlayers()) do
+			if not plr:IsFriendsWith(speaker.UserId) and plr ~= speaker then
+				table.insert(returns,plr)
+			end
+		end
+		return returns
+	end,
+	["guests"] = function(speaker,args)
+		local returns = {}
+		for _,plr in pairs(Players:GetPlayers()) do
+			if plr.Guest then
+				table.insert(returns,plr)
+			end
+		end
+		return returns
+	end,
+	["bacons"] = function(speaker,args)
+		local returns = {}
+		for _,plr in pairs(Players:GetPlayers()) do
+			if plr.Character:FindFirstChild('Pal Hair') or plr.Character:FindFirstChild('Kate Hair') then
+				table.insert(returns,plr)
+			end
+		end
+		return returns
+	end,
+	["age(%d+)"] = function(speaker,args)
+		local returns = {}
+		local age = tonumber(args[1])
+		if not age == nil then return end
+		for _,plr in pairs(Players:GetPlayers()) do
+			if plr.AccountAge <= age then
+				table.insert(returns,plr)
+			end
+		end
+		return returns
+	end,
+	["nearest"] = function(speaker,args,currentList)
+		local speakerChar = speaker.Character
+		if not speakerChar or not getRoot(speakerChar) then return end
+		local lowest = math.huge
+		local NearestPlayer = nil
+		for _,plr in pairs(currentList) do
+			if plr ~= speaker and plr.Character then
+				local distance = plr:DistanceFromCharacter(getRoot(speakerChar).Position)
+				if distance < lowest then
+					lowest = distance
+					NearestPlayer = {plr}
+				end
+			end
+		end
+		return NearestPlayer
+	end,
+	["farthest"] = function(speaker,args,currentList)
+		local speakerChar = speaker.Character
+		if not speakerChar or not getRoot(speakerChar) then return end
+		local highest = 0
+		local Farthest = nil
+		for _,plr in pairs(currentList) do
+			if plr ~= speaker and plr.Character then
+				local distance = plr:DistanceFromCharacter(getRoot(speakerChar).Position)
+				if distance > highest then
+					highest = distance
+					Farthest = {plr}
+				end
+			end
+		end
+		return Farthest
+	end,
+	["group(%d+)"] = function(speaker,args)
+		local returns = {}
+		local groupID = tonumber(args[1])
+		for _,plr in pairs(Players:GetPlayers()) do
+			if plr:IsInGroup(groupID) then  
+				table.insert(returns,plr)
+			end
+		end
+		return returns
+	end,
+	["alive"] = function(speaker,args)
+		local returns = {}
+		for _,plr in pairs(Players:GetPlayers()) do
+			if plr.Character and plr.Character:FindFirstChildOfClass("Humanoid") and plr.Character:FindFirstChildOfClass("Humanoid").Health > 0 then
+				table.insert(returns,plr)
+			end
+		end
+		return returns
+	end,
+	["dead"] = function(speaker,args)
+		local returns = {}
+		for _,plr in pairs(Players:GetPlayers()) do
+			if (not plr.Character or not plr.Character:FindFirstChildOfClass("Humanoid")) or plr.Character:FindFirstChildOfClass("Humanoid").Health <= 0 then
+				table.insert(returns,plr)
+			end
+		end
+		return returns
+	end,
+	["rad(%d+)"] = function(speaker,args)
+		local returns = {}
+		local radius = tonumber(args[1])
+		local speakerChar = speaker.Character
+		if not speakerChar or not getRoot(speakerChar) then return end
+		for _,plr in pairs(Players:GetPlayers()) do
+			if plr.Character and getRoot(plr.Character) then
+				local magnitude = (getRoot(plr.Character).Position-getRoot(speakerChar).Position).magnitude
+				if magnitude <= radius then table.insert(returns,plr) end
+			end
+		end
+		return returns
+	end,
+	["cursor"] = function(speaker)
+		local plrs = {}
+		local v = GetClosestPlayerFromCursor()
+		if v ~= nil then table.insert(plrs, v) end
+		return plrs
+	end,
+}
+function onlyIncludeInTable(tab,matches)
+	local matchTable = {}
+	local resultTable = {}
+	for i,v in pairs(matches) do matchTable[v.Name] = true end
+	for i,v in pairs(tab) do if matchTable[v.Name] then table.insert(resultTable,v) end end
+	return resultTable
+end
+
+function removeTableMatches(tab,matches)
+	local matchTable = {}
+	local resultTable = {}
+	for i,v in pairs(matches) do matchTable[v.Name] = true end
+	for i,v in pairs(tab) do if not matchTable[v.Name] then table.insert(resultTable,v) end end
+	return resultTable
+end
+
+function getPlayersByName(Name)
+	local Name,Len,Found = string.lower(Name),#Name,{}
+	for _,v in pairs(Players:GetPlayers()) do
+		if Name:sub(0,1) == '@' then
+			if string.sub(string.lower(v.Name),1,Len-1) == Name:sub(2) then
+				table.insert(Found,v)
+			end
+		else
+			if string.sub(string.lower(v.Name),1,Len) == Name or string.sub(string.lower(v.DisplayName),1,Len) == Name then
+				table.insert(Found,v)
+			end
+		end
+	end
+	return Found
+end
+function getPlayer(list,speaker)
+	if list == nil then return {speaker.Name} end
+	local nameList = splitString(list,",")
+
+	local foundList = {}
+
+	for _,name in pairs(nameList) do
+		if string.sub(name,1,1) ~= "+" and string.sub(name,1,1) ~= "-" then name = "+"..name end
+		local tokens = toTokens(name)
+		local initialPlayers = Players:GetPlayers()
+
+		for i,v in pairs(tokens) do
+			if v.Operator == "+" then
+				local tokenContent = v.Name
+				local foundCase = false
+				for regex,case in pairs(SpecialPlayerCases) do
+					local matches = {string.match(tokenContent,"^"..regex.."$")}
+					if #matches > 0 then
+						foundCase = true
+						initialPlayers = onlyIncludeInTable(initialPlayers,case(speaker,matches,initialPlayers))
+					end
+				end
+				if not foundCase then
+					initialPlayers = onlyIncludeInTable(initialPlayers,getPlayersByName(tokenContent))
+				end
+			else
+				local tokenContent = v.Name
+				local foundCase = false
+				for regex,case in pairs(SpecialPlayerCases) do
+					local matches = {string.match(tokenContent,"^"..regex.."$")}
+					if #matches > 0 then
+						foundCase = true
+						initialPlayers = removeTableMatches(initialPlayers,case(speaker,matches,initialPlayers))
+					end
+				end
+				if not foundCase then
+					initialPlayers = removeTableMatches(initialPlayers,getPlayersByName(tokenContent))
+				end
+			end
+		end
+
+		for i,v in pairs(initialPlayers) do table.insert(foundList,v) end
+	end
+
+	local foundNames = {}
+	for i,v in pairs(foundList) do table.insert(foundNames,v.Name) end
+
+	return foundNames
+end
+function Destroy(instance)
+	spawn(function()
+		game:GetService("ReplicatedStorage").DeleteCar:FireServer(instance)
+	end)
+end
+
+-- Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.ResetOnSpawn = false
+
+Center.Name = "Center"
+Center.Parent = ScreenGui
+Center.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+Center.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Center.BorderSizePixel = 0
+Center.Position = UDim2.new(0.221154943, 0, 0.151179716, 0)
+Center.Size = UDim2.new(0, 605, 0, 370)
+
+TextLabel.Parent = Center
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 2.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.163636357, 0, 0, 0)
+TextLabel.Size = UDim2.new(0, 406, 0, 50)
+TextLabel.Font = Enum.Font.Unknown
+TextLabel.Text = "Center Regginator"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 30.000
+
+kill.Name = "kill"
+kill.Parent = Center
+kill.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+kill.BorderColor3 = Color3.fromRGB(0, 0, 0)
+kill.BorderSizePixel = 0
+kill.Position = UDim2.new(0.0611569248, 0, 0.237837926, 0)
+kill.Size = UDim2.new(0, 92, 0, 50)
+kill.Font = Enum.Font.Unknown
+kill.Text = "Kill"
+kill.TextColor3 = Color3.fromRGB(255, 255, 255)
+kill.TextSize = 20.000
+kill.MouseButton1Click:Connect(function()
+	local players = getPlayer(target.Text, Players.LocalPlayer)
+	for i, v in pairs(players) do
+		if Players[v].Character:FindFirstChildOfClass("Humanoid").RigType == Enum.HumanoidRigType.R6 then
+			Destroy(Players[v].Character.Torso.Neck)
+		else
+			Destroy(Players[v].Character.Head.Neck)
+		end
+	end
+end)
+
+ban.Name = "ban"
+ban.Parent = Center
+ban.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+ban.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ban.BorderSizePixel = 0
+ban.Position = UDim2.new(0.0611569248, 0, 0.408108205, 0)
+ban.Size = UDim2.new(0, 92, 0, 50)
+ban.Font = Enum.Font.Unknown
+ban.Text = "Ban"
+ban.TextColor3 = Color3.fromRGB(255, 255, 255)
+ban.TextSize = 20.000
+ban.MouseButton1Click:Connect(function()
+	local players = getPlayer(target.Text, Players.LocalPlayer)
+	for i, v in pairs(players) do
+		table.insert(banned, Players[v].UserId)
+		Destroy(Players[v])
+	end
+end)
+
+naked.Name = "naked"
+naked.Parent = Center
+naked.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+naked.BorderColor3 = Color3.fromRGB(0, 0, 0)
+naked.BorderSizePixel = 0
+naked.Position = UDim2.new(0.0611569248, 0, 0.613513589, 0)
+naked.Size = UDim2.new(0, 92, 0, 50)
+naked.Font = Enum.Font.Unknown
+naked.Text = "Naked"
+naked.TextColor3 = Color3.fromRGB(255, 255, 255)
+naked.TextSize = 20.000
+naked.MouseButton1Click:Connect(function()
+	local players = getPlayer(target.Text, Players.LocalPlayer)
+	for i, v in pairs(players) do
+		Destroy(Players[v].Character:FindFirstChildOfClass("Pants"))
+		Destroy(Players[v].Character:FindFirstChildOfClass("Shirt"))
+		Destroy(Players[v].Character:FindFirstChildOfClass("ShirtGraphic"))
+	end
+end)
+
+sink.Name = "sink"
+sink.Parent = Center
+sink.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+sink.BorderColor3 = Color3.fromRGB(0, 0, 0)
+sink.BorderSizePixel = 0
+sink.Position = UDim2.new(0.25950402, 0, 0.237837926, 0)
+sink.Size = UDim2.new(0, 92, 0, 50)
+sink.Font = Enum.Font.Unknown
+sink.Text = "Sink"
+sink.TextColor3 = Color3.fromRGB(255, 255, 255)
+sink.TextSize = 20.000
+sink.MouseButton1Click:Connect(function()
+	local players = getPlayer(target.Text, Players.LocalPlayer)
+	for i, v in pairs(players) do
+		Destroy(Players[v].Character.HumanoidRootPart)
+	end
+end)
+
+kick.Name = "kick"
+kick.Parent = Center
+kick.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+kick.BorderColor3 = Color3.fromRGB(0, 0, 0)
+kick.BorderSizePixel = 0
+kick.Position = UDim2.new(0.25950402, 0, 0.408108205, 0)
+kick.Size = UDim2.new(0, 92, 0, 50)
+kick.Font = Enum.Font.Unknown
+kick.Text = "Kick"
+kick.TextColor3 = Color3.fromRGB(255, 255, 255)
+kick.TextSize = 20.000
+kick.MouseButton1Click:Connect(function()
+	local players = getPlayer(target.Text, Players.LocalPlayer)
+	for i, v in pairs(players) do
+		Destroy(Players[v])
+	end
+end)
+
+rangdoll.Name = "rangdoll"
+rangdoll.Parent = Center
+rangdoll.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+rangdoll.BorderColor3 = Color3.fromRGB(0, 0, 0)
+rangdoll.BorderSizePixel = 0
+rangdoll.Position = UDim2.new(0.246280894, 0, 0.613513589, 0)
+rangdoll.Size = UDim2.new(0, 107, 0, 50)
+rangdoll.Font = Enum.Font.Unknown
+rangdoll.Text = "Rangdoll"
+rangdoll.TextColor3 = Color3.fromRGB(255, 255, 255)
+rangdoll.TextSize = 20.000
+rangdoll.MouseButton1Click:Connect(function()
+	local players = getPlayer(target.Text, Players.LocalPlayer)
+	for i, v in pairs(players) do
+		Destroy(Players[v].Character:FindFirstChildOfClass("Humanoid"))
+	end
+end)
+
+target.Name = "target"
+target.Parent = Center
+target.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+target.BorderColor3 = Color3.fromRGB(144, 144, 144)
+target.Position = UDim2.new(0.320661157, 0, 0.827027023, 0)
+target.Size = UDim2.new(0, 200, 0, 50)
+target.Font = Enum.Font.Unknown
+target.PlaceholderText = "Target Here"
+target.Text = ""
+target.TextColor3 = Color3.fromRGB(255, 255, 255)
+target.TextSize = 14.000
+
+nolimbs.Name = "nolimbs"
+nolimbs.Parent = Center
+nolimbs.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+nolimbs.BorderColor3 = Color3.fromRGB(0, 0, 0)
+nolimbs.BorderSizePixel = 0
+nolimbs.Position = UDim2.new(0.459504038, 0, 0.237837926, 0)
+nolimbs.Size = UDim2.new(0, 116, 0, 50)
+nolimbs.Font = Enum.Font.Unknown
+nolimbs.Text = "NoLimbs"
+nolimbs.TextColor3 = Color3.fromRGB(255, 255, 255)
+nolimbs.TextSize = 20.000
+nolimbs.MouseButton1Click:Connect(function()
+	local players = getPlayer(target.Text, Players.LocalPlayer)
+	for i, v in pairs(players) do
+		if Players[v].Character:FindFirstChildOfClass("Humanoid").RigType == Enum.HumanoidRigType.R6 then
+			Destroy(Players[v].Character["Left Arm"])
+			Destroy(Players[v].Character["Left Leg"])
+			Destroy(Players[v].Character["Right Arm"])
+			Destroy(Players[v].Character["Right Leg"])
+		else
+			Destroy(Players[v].Character["LeftUpperArm"])
+			Destroy(Players[v].Character["LeftUpperLeg"])
+			Destroy(Players[v].Character["RightUpperArm"])
+			Destroy(Players[v].Character["RightUpperLeg"])
+		end
+	end
+end)
+
+goto.Name = "goto"
+goto.Parent = Center
+goto.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+goto.BorderColor3 = Color3.fromRGB(0, 0, 0)
+goto.BorderSizePixel = 0
+goto.Position = UDim2.new(0.459504038, 0, 0.408108205, 0)
+goto.Size = UDim2.new(0, 116, 0, 50)
+goto.Font = Enum.Font.Unknown
+goto.Text = "Goto"
+goto.TextColor3 = Color3.fromRGB(255, 255, 255)
+goto.TextSize = 20.000
+goto.MouseButton1Click:connect(function()
+	local players = getPlayer(target.Text, Players.LocalPlayer)
+	for i, v in pairs(players) do
+		if Players[v].Character ~= nil then
+			if Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') and Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').SeatPart then
+				Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Sit = false
+				wait(.1)
+			end
+			getRoot(Players.LocalPlayer.Character).CFrame = getRoot(Players[v].Character).CFrame + Vector3.new(3,1,0)
+		end
+	end
+end)
+
+noregen.Name = "noregen"
+noregen.Parent = Center
+noregen.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+noregen.BorderColor3 = Color3.fromRGB(0, 0, 0)
+noregen.BorderSizePixel = 0
+noregen.Position = UDim2.new(0.459504038, 0, 0.613513589, 0)
+noregen.Size = UDim2.new(0, 116, 0, 50)
+noregen.Font = Enum.Font.Unknown
+noregen.Text = "NoRegen"
+noregen.TextColor3 = Color3.fromRGB(255, 255, 255)
+noregen.TextSize = 20.000
+noregen.MouseButton1Click:Connect(function()
+	local players = getPlayer(target.Text, Players.LocalPlayer)
+	for i, v in pairs(players) do
+		Destroy(Players[v].Character:FindFirstChild("Health"))
+	end
+end)
+
+pantsless.Name = "pantsless"
+pantsless.Parent = Center
+pantsless.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+pantsless.BorderColor3 = Color3.fromRGB(0, 0, 0)
+pantsless.BorderSizePixel = 0
+pantsless.Position = UDim2.new(0.692561865, 0, 0.237837926, 0)
+pantsless.Size = UDim2.new(0, 116, 0, 50)
+pantsless.Font = Enum.Font.Unknown
+pantsless.Text = "PantsLess"
+pantsless.TextColor3 = Color3.fromRGB(255, 255, 255)
+pantsless.TextSize = 20.000
+punish.MouseButton1Click:Connect(function()
+	local players = getPlayer(target.Text, Players.LocalPlayer)
+	for i, v in pairs(players) do
+		Destroy(Players[v].Character)
+	end
+end)
+
+shirtless.Name = "shirtless"
+shirtless.Parent = Center
+shirtless.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+shirtless.BorderColor3 = Color3.fromRGB(0, 0, 0)
+shirtless.BorderSizePixel = 0
+shirtless.Position = UDim2.new(0.692561865, 0, 0.408108205, 0)
+shirtless.Size = UDim2.new(0, 116, 0, 50)
+shirtless.Font = Enum.Font.Unknown
+shirtless.Text = "ShirtLess"
+shirtless.TextColor3 = Color3.fromRGB(255, 255, 255)
+shirtless.TextSize = 20.000
+shirtless.MouseButton1Click:Connect(function()
+	local players = getPlayer(target.Text, Players.LocalPlayer)
+	for i, v in pairs(players) do
+		Destroy(Players[v].Character:FindFirstChildOfClass("Shirt"))
+	end
+end)
+
+punish.Name = "punish"
+punish.Parent = Center
+punish.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+punish.BorderColor3 = Color3.fromRGB(0, 0, 0)
+punish.BorderSizePixel = 0
+punish.Position = UDim2.new(0.692561865, 0, 0.613513589, 0)
+punish.Size = UDim2.new(0, 116, 0, 50)
+punish.Font = Enum.Font.Unknown
+punish.Text = "Punish"
+punish.TextColor3 = Color3.fromRGB(255, 255, 255)
+punish.TextSize = 20.000
+punish.MouseButton1Click:Connect(function()
+	local players = getPlayer(target.Text, Players.LocalPlayer)
+	for i, v in pairs(players) do
+		Destroy(Players[v].Character)
+	end
+end)
+
+r6.Name = "r6"
+r6.Parent = Center
+r6.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+r6.BorderColor3 = Color3.fromRGB(0, 0, 0)
+r6.BorderSizePixel = 0
+r6.Position = UDim2.new(0.899173439, 0, 0.00270270277, 0)
+r6.Size = UDim2.new(0, 61, 0, 49)
+r6.Font = Enum.Font.Unknown
+r6.Text = "R6"
+r6.TextColor3 = Color3.fromRGB(255, 255, 255)
+r6.TextSize = 20.000
+r6.MouseButton1Click:Connect(function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Imagnir/r6_anims_for_r15/main/r6_anims.lua", true))()
+end)
+
+-- Scripts:
+
+local function DKCPV_fake_script() -- Center.Dragify 
+	local script = Instance.new('LocalScript', Center)
+
+	local UIS = game:GetService("UserInputService")
+	function dragify(Frame)
+	    dragToggle = nil
+	    local dragSpeed = 0.50
+	    dragInput = nil
+	    dragStart = nil
+	    local dragPos = nil
+	    function updateInput(input)
+	        local Delta = input.Position - dragStart
+	        local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+	        game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.30), {Position = Position}):Play()
+	    end
+	    Frame.InputBegan:Connect(function(input)
+	        if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+	            dragToggle = true
+	            dragStart = input.Position
+	            startPos = Frame.Position
+	            input.Changed:Connect(function()
+	                if input.UserInputState == Enum.UserInputState.End then
+	                    dragToggle = false
+	                end
+	            end)
+	        end
+	    end)
+	    Frame.InputChanged:Connect(function(input)
+	        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+	            dragInput = input
+	        end
+	    end)
+	    game:GetService("UserInputService").InputChanged:Connect(function(input)
+	        if input == dragInput and dragToggle then
+	            updateInput(input)
+	        end
+	    end)
+	end
+	
+	dragify(script.Parent)
+end
+coroutine.wrap(DKCPV_fake_script)()
