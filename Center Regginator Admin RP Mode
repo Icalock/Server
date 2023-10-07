@@ -1,0 +1,342 @@
+-- Made
+--     By
+-- ShadeDev
+local maingui = Instance.new("ScreenGui")
+local main = Instance.new("Frame")
+local DragLabel = Instance.new("TextLabel")
+local UICorner = Instance.new("UICorner")
+local ImageLabel = Instance.new("ImageLabel")
+local close = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local killothers = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local UICorner_4 = Instance.new("UICorner")
+local kickothers = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local killtool = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
+local deletetool = Instance.new("TextButton")
+local UICorner_7 = Instance.new("UICorner")
+local r6 = Instance.new("TextButton")
+local UICorner_8 = Instance.new("UICorner")
+local punishothers = Instance.new("TextButton")
+local UICorner_9 = Instance.new("UICorner")
+local walklessothers = Instance.new("TextButton")
+local UICorner_10 = Instance.new("UICorner")
+local Label = Instance.new("TextLabel")
+local UICorner_11 = Instance.new("UICorner")
+local Label_2 = Instance.new("TextLabel")
+local UICorner_12 = Instance.new("UICorner")
+local Label_3 = Instance.new("TextLabel")
+local UICorner_13 = Instance.new("UICorner")
+
+--Properties:
+
+maingui.Name = "maingui"
+maingui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+maingui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+main.Name = "main"
+main.Parent = maingui
+main.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+main.BorderSizePixel = 0
+main.Position = UDim2.new(0.231947929, 0, 0.176562503, 0)
+main.Size = UDim2.new(0, 599, 0, 387)
+
+DragLabel.Name = "DragLabel"
+DragLabel.Parent = main
+DragLabel.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+DragLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+DragLabel.BorderSizePixel = 0
+DragLabel.Position = UDim2.new(0.180300504, 0, 0.0232558139, 0)
+DragLabel.Size = UDim2.new(0, 383, 0, 29)
+DragLabel.Font = Enum.Font.SourceSansBold
+DragLabel.Text = "Center Regginator Admin - Ropleplay Mode - Drag Here"
+DragLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+DragLabel.TextSize = 14.000
+
+UICorner.Parent = DragLabel
+
+ImageLabel.Parent = DragLabel
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.BackgroundTransparency = 2.000
+ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel.BorderSizePixel = 0
+ImageLabel.Position = UDim2.new(0.0731070489, 0, 0.137931034, 0)
+ImageLabel.Size = UDim2.new(0, 19, 0, 20)
+ImageLabel.Image = "http://www.roblox.com/asset/?id=11507046652"
+
+close.Name = "close"
+close.Parent = main
+close.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+close.BorderColor3 = Color3.fromRGB(0, 0, 0)
+close.BorderSizePixel = 0
+close.Position = UDim2.new(0.943026781, 0, 0.0387596898, 0)
+close.Size = UDim2.new(0, 17, 0, 17)
+close.Font = Enum.Font.SourceSans
+close.Text = ""
+close.TextColor3 = Color3.fromRGB(0, 0, 0)
+close.TextSize = 14.000
+
+UICorner_2.CornerRadius = UDim.new(0, 50)
+UICorner_2.Parent = close
+
+killothers.Name = "killothers"
+killothers.Parent = main
+killothers.BackgroundColor3 = Color3.fromRGB(65, 65, 65)
+killothers.BorderColor3 = Color3.fromRGB(0, 0, 0)
+killothers.BorderSizePixel = 0
+killothers.Position = UDim2.new(0.0550918207, 0, 0.165374681, 0)
+killothers.Size = UDim2.new(0, 200, 0, 50)
+killothers.Font = Enum.Font.SourceSansBold
+killothers.Text = "Kill Others"
+killothers.TextColor3 = Color3.fromRGB(255, 255, 255)
+killothers.TextSize = 14.000
+killothers.MouseButton1Click:Connect(function()
+	for i,v in pairs(game:GetService("Players"):GetChildren()) do
+		if v:IsA("Player") then
+			if v.Name ~= game:GetService("Players").LocalPlayer.Name then
+				game:GetService("ReplicatedStorage").Events.Tools.ChangeParent:FireServer(v.Character:WaitForChild("Head"):WaitForChild("Neck"),nil)
+			end
+		end
+	end
+end)
+
+UICorner_3.Parent = killothers
+
+UICorner_4.Parent = main
+
+kickothers.Name = "kickothers"
+kickothers.Parent = main
+kickothers.BackgroundColor3 = Color3.fromRGB(65, 65, 65)
+kickothers.BorderColor3 = Color3.fromRGB(0, 0, 0)
+kickothers.BorderSizePixel = 0
+kickothers.Position = UDim2.new(0.0550918207, 0, 0.322997421, 0)
+kickothers.Size = UDim2.new(0, 200, 0, 50)
+kickothers.Font = Enum.Font.SourceSansBold
+kickothers.Text = "Kick Others"
+kickothers.TextColor3 = Color3.fromRGB(255, 255, 255)
+kickothers.TextSize = 14.000
+kickothers.MouseButton1Click:Connect(function()
+    for i,v in pairs(game:GetService("Players"):GetChildren()) do
+		if v:IsA("Player") then
+			if v.Name ~= game:GetService("Players").LocalPlayer.Name then
+				game:GetService("ReplicatedStorage").Events.Tools.ChangeParent:FireServer(v,nil)
+			end
+		end
+	end
+end)
+
+UICorner_5.Parent = kickothers
+
+killtool.Name = "killtool"
+killtool.Parent = main
+killtool.BackgroundColor3 = Color3.fromRGB(65, 65, 65)
+killtool.BorderColor3 = Color3.fromRGB(0, 0, 0)
+killtool.BorderSizePixel = 0
+killtool.Position = UDim2.new(0.577629387, 0, 0.165374681, 0)
+killtool.Size = UDim2.new(0, 200, 0, 50)
+killtool.Font = Enum.Font.SourceSansBold
+killtool.Text = "Kill Tool"
+killtool.TextColor3 = Color3.fromRGB(255, 255, 255)
+killtool.TextSize = 14.000
+killtool.MouseButton1Click:Connect(function()
+    mouse = game:GetService("Players").LocalPlayer:GetMouse()
+	tool = Instance.new("Tool")
+	tool.RequiresHandle = false
+	tool.Name = "Kill tool"
+	tool.Activated:Connect(function()
+	if mouse.Target.Parent:FindFirstChild("Humanoid") then
+	game:GetService("ReplicatedStorage").Events.Tools.ChangeParent:FireServer(mouse.Target.Parent:FindFirstChild("Head"):WaitForChild("Neck"))
+	end
+	end)
+	tool.Parent = game:GetService("Players").LocalPlayer.Backpack
+end)
+
+UICorner_6.Parent = killtool
+
+deletetool.Name = "deletetool"
+deletetool.Parent = main
+deletetool.BackgroundColor3 = Color3.fromRGB(65, 65, 65)
+deletetool.BorderColor3 = Color3.fromRGB(0, 0, 0)
+deletetool.BorderSizePixel = 0
+deletetool.Position = UDim2.new(0.577629387, 0, 0.322997421, 0)
+deletetool.Size = UDim2.new(0, 200, 0, 50)
+deletetool.Font = Enum.Font.SourceSansBold
+deletetool.Text = "Delete Tool"
+deletetool.TextColor3 = Color3.fromRGB(255, 255, 255)
+deletetool.TextSize = 14.000
+deletetool.MouseButton1Click:Connect(function()
+    mouse = game:GetService("Players").LocalPlayer:GetMouse()
+	tool = Instance.new("Tool")
+	tool.RequiresHandle = false
+	tool.Name = "Delete tool"
+	tool.Activated:Connect(function()
+	game:GetService("ReplicatedStorage").Events.Tools.ChangeParent:FireServer(mouse.Target)
+	end)
+	tool.Parent = game:GetService("Players").LocalPlayer.Backpack
+end)
+
+UICorner_7.Parent = deletetool
+
+r6.Name = "r6"
+r6.Parent = main
+r6.BackgroundColor3 = Color3.fromRGB(65, 65, 65)
+r6.BorderColor3 = Color3.fromRGB(0, 0, 0)
+r6.BorderSizePixel = 0
+r6.Position = UDim2.new(0.0166944917, 0, 0.0232558139, 0)
+r6.Size = UDim2.new(0, 32, 0, 29)
+r6.Font = Enum.Font.SourceSansBold
+r6.Text = "R6"
+r6.TextColor3 = Color3.fromRGB(255, 255, 255)
+r6.TextSize = 14.000
+r6.MouseButton1Click:Connect(function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Imagnir/r6_anims_for_r15/main/r6_anims.lua", true))()
+end)
+
+UICorner_8.Parent = r6
+
+punishothers.Name = "punishothers"
+punishothers.Parent = main
+punishothers.BackgroundColor3 = Color3.fromRGB(65, 65, 65)
+punishothers.BorderColor3 = Color3.fromRGB(0, 0, 0)
+punishothers.BorderSizePixel = 0
+punishothers.Position = UDim2.new(0.0550918207, 0, 0.50129199, 0)
+punishothers.Size = UDim2.new(0, 200, 0, 50)
+punishothers.Font = Enum.Font.SourceSansBold
+punishothers.Text = "Punish Others"
+punishothers.TextColor3 = Color3.fromRGB(255, 255, 255)
+punishothers.TextSize = 14.000
+punishothers.MouseButton1Click:Connect(function()
+    for i,v in pairs(game:GetService("Players"):GetChildren()) do
+		if v:IsA("Player") then
+			if v.Name ~= game:GetService("Players").LocalPlayer.Name then
+				game:GetService("ReplicatedStorage").Events.Tools.ChangeParent:FireServer(v.Character,nil)
+			end
+		end
+	end
+end)
+
+UICorner_9.Parent = punishothers
+
+walklessothers.Name = "walklessothers"
+walklessothers.Parent = main
+walklessothers.BackgroundColor3 = Color3.fromRGB(65, 65, 65)
+walklessothers.BorderColor3 = Color3.fromRGB(0, 0, 0)
+walklessothers.BorderSizePixel = 0
+walklessothers.Position = UDim2.new(0.577629387, 0, 0.50129199, 0)
+walklessothers.Size = UDim2.new(0, 200, 0, 50)
+walklessothers.Font = Enum.Font.SourceSansBold
+walklessothers.Text = "Walkless Others"
+walklessothers.TextColor3 = Color3.fromRGB(255, 255, 255)
+walklessothers.TextSize = 14.000
+walklessothers.MouseButton1Click:Connect(function()
+    for i,v in pairs(game:GetService("Players"):GetChildren()) do
+		if v:IsA("Player") then
+			if v.Name ~= game:GetService("Players").LocalPlayer.Name then
+				game:GetService("ReplicatedStorage").Events.Tools.ChangeParent:FireServer(v.Character.HumanoidRootPart,nil)
+			end
+		end
+	end
+end)
+
+UICorner_10.Parent = walklessothers
+
+Label.Name = "Label"
+Label.Parent = main
+Label.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+Label.BackgroundTransparency = 2.000
+Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Label.BorderSizePixel = 0
+Label.Position = UDim2.new(0.88647747, 0, 0.844961226, 0)
+Label.Size = UDim2.new(0, 51, 0, 29)
+Label.Font = Enum.Font.SourceSansBold
+Label.Text = "Made"
+Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+Label.TextSize = 14.000
+
+UICorner_11.Parent = Label
+
+Label_2.Name = "Label"
+Label_2.Parent = main
+Label_2.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+Label_2.BackgroundTransparency = 2.000
+Label_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Label_2.BorderSizePixel = 0
+Label_2.Position = UDim2.new(0.903171957, 0, 0.873385012, 0)
+Label_2.Size = UDim2.new(0, 51, 0, 29)
+Label_2.Font = Enum.Font.SourceSansBold
+Label_2.Text = "By"
+Label_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Label_2.TextSize = 14.000
+
+UICorner_12.Parent = Label_2
+
+Label_3.Name = "Label"
+Label_3.Parent = main
+Label_3.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+Label_3.BackgroundTransparency = 2.000
+Label_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Label_3.BorderSizePixel = 0
+Label_3.Position = UDim2.new(0.878130198, 0, 0.901808798, 0)
+Label_3.Size = UDim2.new(0, 61, 0, 29)
+Label_3.Font = Enum.Font.SourceSansBold
+Label_3.Text = "ShadeDev"
+Label_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+Label_3.TextSize = 14.000
+
+UICorner_13.Parent = Label_3
+
+-- Scripts:
+
+local function QYYDRS_fake_script() -- close.LocalScript 
+	local script = Instance.new('LocalScript', close)
+
+	script.Parent.MouseButton1Down:Connect(function()
+		script.Parent.Parent.Visible = false
+	end)
+end
+coroutine.wrap(QYYDRS_fake_script)()
+local function GVEPKR_fake_script() -- main.Dragify 
+	local script = Instance.new('LocalScript', main)
+
+	local UIS = game:GetService("UserInputService")
+	function dragify(Frame)
+	    dragToggle = nil
+	    local dragSpeed = 0.50
+	    dragInput = nil
+	    dragStart = nil
+	    local dragPos = nil
+	    function updateInput(input)
+	        local Delta = input.Position - dragStart
+	        local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+	        game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.30), {Position = Position}):Play()
+	    end
+	    Frame.InputBegan:Connect(function(input)
+	        if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+	            dragToggle = true
+	            dragStart = input.Position
+	            startPos = Frame.Position
+	            input.Changed:Connect(function()
+	                if input.UserInputState == Enum.UserInputState.End then
+	                    dragToggle = false
+	                end
+	            end)
+	        end
+	    end)
+	    Frame.InputChanged:Connect(function(input)
+	        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+	            dragInput = input
+	        end
+	    end)
+	    game:GetService("UserInputService").InputChanged:Connect(function(input)
+	        if input == dragInput and dragToggle then
+	            updateInput(input)
+	        end
+	    end)
+	end
+	
+	dragify(script.Parent)
+end
+coroutine.wrap(GVEPKR_fake_script)()
