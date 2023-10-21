@@ -56,77 +56,77 @@ local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Ical
 OrionLib:MakeNotification({
 	Name = "Life Destroyer Beta UTG",
 	Content = "Loading...",
-	Image = "http://www.roblox.com/asset/?id=12597288571",
+	Image = "http://www.roblox.com/asset/?id=11507046652",
 	Time = 5
 })
 wait(5)
 OrionLib:MakeNotification({
 	Name = "Life Destroyer Beta UTG",
 	Content = "Welcome to Life Destroyer",
-	Image = "http://www.roblox.com/asset/?id=12597288571",
+	Image = "http://www.roblox.com/asset/?id=11507046652",
 	Time = 5
 })
 OrionLib:MakeNotification({
 	Name = "Life Destroyer Beta UTG",
 	Content = "Game Detected: Redwood Prison",
-	Image = "http://www.roblox.com/asset/?id=12597288571",
+	Image = "http://www.roblox.com/asset/?id=11507046652",
 	Time = 5
 })
 local Main = OrionLib:MakeWindow({Name = "Life Destroyer Beta UTG - Redwood Prison", HidePremium = true, SaveConfig = true, ConfigFolder = "OrionTest"})
 
 local Tab = Main:MakeTab({
 	Name = "Main",
-	Icon = "rbxassetid://4483345998",
+	Icon = "http://www.roblox.com/asset/?id=11507046652",
 	PremiumOnly = false
 })
 local A = Main:MakeTab({
 	Name = "Archived Stuff",
-	Icon = "rbxassetid://4483345998",
+	Icon = "http://www.roblox.com/asset/?id=11507046652",
 	PremiumOnly = false
 })
 local G= Main:MakeTab({
 	Name = "Teleports",
-	Icon = "rbxassetid://4483345998",
+	Icon = "http://www.roblox.com/asset/?id=11507046652",
 	PremiumOnly = false
 })
 local L= Main:MakeTab({
 	Name = "Blocks",
-	Icon = "rbxassetid://4483345998",
+	Icon = "http://www.roblox.com/asset/?id=11507046652",
 	PremiumOnly = false
 })
 local M= Main:MakeTab({
 	Name = "More",
-	Icon = "rbxassetid://4483345998",
+	Icon = "http://www.roblox.com/asset/?id=11507046652",
 	PremiumOnly = false
 })
 local C= Main:MakeTab({
 	Name = "Colorpicker",
-	Icon = "rbxassetid://4483345998",
+	Icon = "http://www.roblox.com/asset/?id=11507046652",
 	PremiumOnly = false
 })
 local P= Main:MakeTab({
 	Name = "VIP",
-	Icon = "rbxassetid://4483345998",
+	Icon = "http://www.roblox.com/asset/?id=11507046652",
 	PremiumOnly = false
 })
 local Pl= Main:MakeTab({
 	Name = "Prison Stuff",
-	Icon = "rbxassetid://4483345998",
+	Icon = "http://www.roblox.com/asset/?id=11507046652",
 	PremiumOnly = false
 })
 local O= Main:MakeTab({
 	Name = "Other Games",
-	Icon = "rbxassetid://4483345998",
+	Icon = "http://www.roblox.com/asset/?id=11507046652",
 	PremiumOnly = false
 })
 local Ow= Main:MakeTab({
 	Name = "Owner",
-	Icon = "rbxassetid://4483345998",
+	Icon = "http://www.roblox.com/asset/?id=11507046652",
 	PremiumOnly = false
 })
 local  Mod= Main:MakeTab({
 	Name = "Moderator",
-	Icon = "rbxassetid://4483345998",
+	Icon = "http://www.roblox.com/asset/?id=11507046652",
 	PremiumOnly = false
 })
 local Section = A:AddSection({
