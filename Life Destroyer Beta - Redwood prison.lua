@@ -52,7 +52,7 @@ local teamCh = "Choosing"
       
 lp = game.Players.LocalPlayer
 doorspamming = false
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Icalock/Server/main/Test%20Orion%20Changes",true))();
 OrionLib:MakeNotification({
 	Name = "Life Destroyer Beta UTG",
 	Content = "Loading...",
