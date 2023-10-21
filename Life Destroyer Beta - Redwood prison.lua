@@ -1,6 +1,6 @@
 
 game.StarterGui:SetCore("ChatMakeSystemMessage", {
-Text = "Welcome to Life Destroyer Beta UTG";
+Text = "Welcome to Center Regginator Admin";
 Color =  Color3.new(1, 1, 0);
 Font = Enum.Font.GothamBold;
 FontSize = Enum.FontSize.Size24;
@@ -54,25 +54,25 @@ lp = game.Players.LocalPlayer
 doorspamming = false
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Icalock/Server/main/Test%20Orion%20Changes",true))();
 OrionLib:MakeNotification({
-	Name = "Life Destroyer Beta UTG",
+	Name = "Center Regginator Admin",
 	Content = "Loading...",
 	Image = "http://www.roblox.com/asset/?id=11507046652",
 	Time = 5
 })
 wait(5)
 OrionLib:MakeNotification({
-	Name = "Life Destroyer Beta UTG",
-	Content = "Welcome to Life Destroyer",
+	Name = "Center Regginator Admin",
+	Content = "Welcome to Center Regginator",
 	Image = "http://www.roblox.com/asset/?id=11507046652",
 	Time = 5
 })
 OrionLib:MakeNotification({
-	Name = "Life Destroyer Beta UTG",
+	Name = "Center Regginator Admin",
 	Content = "Game Detected: Redwood Prison",
 	Image = "http://www.roblox.com/asset/?id=11507046652",
 	Time = 5
 })
-local Main = OrionLib:MakeWindow({Name = "Life Destroyer Beta UTG - Redwood Prison", HidePremium = true, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Main = OrionLib:MakeWindow({Name = "Center Regginator Admin - Redwood Prison", HidePremium = true, SaveConfig = true, ConfigFolder = "OrionTest"})
 
 local Tab = Main:MakeTab({
 	Name = "Main",
