@@ -919,8 +919,6 @@ function Library:create(options)
 
 	rawset(mt, "creditsContainer", creditsTab.container)
 
-	creditsTab:credit{Name = "ShadeDev", Description = "UI Library Developer - Scripting", Discord = "shade.edev", V3rmillion = "No V3rmillion"}
-
 	return mt
 end
 
