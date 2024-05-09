@@ -919,6 +919,10 @@ function Library:create(options)
 
 	rawset(mt, "creditsContainer", creditsTab.container)
 
+	creditsTab:credit{Name = "ShadeDev", Description = "Scripting", Discord = "Shade.edev", V3rmillion = "No V3"}
+	creditsTab:credit{Name = "estoyestoyjaja", Description = "Idk", Discord = "idk xd", V3rmillion = "No user"}
+	creditsTab:credit{Name = "Repository", Description = "UI Library Repository", Github="https://github.com/Icalock/Server/blob/main/Center%20Regginator%20UILib"}
+
 	return mt
 end
 
