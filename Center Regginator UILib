@@ -572,7 +572,7 @@ function Library:create(options)
 	})
 
 	closeButton.MouseEnter:connect(function()
-		closeButton:tween{ImageColor3 = Color3.fromRGB(255, 124, 142)}
+		closeButton:tween{ImageColor3 = Color3.fromRGB(246, 198, 10)}
 	end)
 
 	closeButton.MouseLeave:connect(function()
