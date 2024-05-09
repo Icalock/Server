@@ -877,7 +877,7 @@ function Library:create(options)
 	local settingsTab = Library.tab(mt, {
 		Name = "Settings",
 		Internal = settingsTabIcon,
-		Icon = "rbxassetid://17109461629"
+		Icon = "http://www.roblox.com/asset/?id=17109461629"
 	})
 
 	settingsTab:_theme_selector()
