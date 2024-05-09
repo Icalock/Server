@@ -567,7 +567,7 @@ function Library:create(options)
 		Size = UDim2.fromOffset(14, 14),
 		Position = UDim2.new(1, -11, 0, 11),
 		Theme = {ImageColor3 = "StrongText"},
-		Image = "http://www.roblox.com/asset/?id=8497487650",
+		Image = "http://www.roblox.com/asset/?id=17108369800",
 		AnchorPoint = Vector2.new(1)
 	})
 
@@ -689,7 +689,7 @@ function Library:create(options)
 		BackgroundTransparency = 1,
 		Position = UDim2.new(0, 5, 0.5, 0),
 		Size = UDim2.new(0, 15, 0, 15),
-		Image = "http://www.roblox.com/asset/?id=8569322835",
+		Image = "http://www.roblox.com/asset/?id=11308600262",
 		Theme = {ImageColor3 = "StrongText"}
 	})
 
@@ -828,7 +828,7 @@ function Library:create(options)
 		Size = UDim2.fromOffset(24, 24),
 		Position = UDim2.new(1, -10, 1, -10),
 		AnchorPoint = Vector2.new(1, 1),
-		Image = "http://www.roblox.com/asset/?id=8559790237"
+		Image = "http://www.roblox.com/asset/?id=17109461647"
 	}):tooltip("settings")
 
 	local creditsTabIcon = profile:object("ImageButton", {
@@ -987,7 +987,7 @@ function Library:notification(options)
 		ImageTransparency = 1,
 		Position = UDim2.fromOffset(1, 1),
 		Size = UDim2.fromOffset(18, 18),
-		Image = "rbxassetid://17430934104",
+		Image = "rbxassetid://8628681683",
 		Theme = {ImageColor3 = "Tertiary"}
 	})
 
